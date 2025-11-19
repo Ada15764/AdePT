@@ -8,4 +8,5 @@ configure_file(data/ppttbar.hepmc3 ${PROJECT_BINARY_DIR}/ppttbar.hepmc3)
 
 # - Subprojects
 add_subdirectory(Example1)
+add_subdirectory(ATLAS_HECTB)
 # add_subdirectory(AsyncExample)
