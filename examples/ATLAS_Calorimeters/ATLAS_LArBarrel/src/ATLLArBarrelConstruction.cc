@@ -78,7 +78,9 @@ G4VPhysicalVolume* ATLLArBarrelConstruction::Construct(){
     // insert test beam cryostat (calorimeter module is inserted inside cryostat)
     LArTBCryostatConstruction* cryostat = new LArTBCryostatConstruction();
     G4LogicalVolume* tbcryostatmotherLog = cryostat->GetEnvelope(); //Em_log
-    G4VPhysicalVolume* tbcryostatmotherPhys = new G4PVPlacement(0, 
+    
+    [[maybe_unused]]
+    G4VPhysicalVolume* tbcryostatmotherPhys =                   new G4PVPlacement(0, 
                                                                 //G4ThreeVector(0.,0.,+2000.), //old position
                                                                                                //as ATLAS TB code
                                                                 G4ThreeVector(0.,0.,0.),       //new pos

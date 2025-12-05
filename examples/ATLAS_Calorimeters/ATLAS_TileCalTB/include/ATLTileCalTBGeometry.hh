@@ -54,7 +54,7 @@ namespace ATLTileCalTBGeometry {
              std::size_t nTilesRow2, std::size_t nTilesRow3,
              std::size_t nTilesRow4, std::size_t nTilesRow5)
             : module(module_), row(row_), nCell(nCell_), firstRow(firstRow_), lastRow(lastRow_),
-              nTilesRow({nTilesRow0, nTilesRow1, nTilesRow2, nTilesRow3, nTilesRow4, nTilesRow5})
+              nTilesRow{{nTilesRow0, nTilesRow1, nTilesRow2, nTilesRow3, nTilesRow4, nTilesRow5}}
             {};
     };
     std::ostream& operator<<(std::ostream& ostream, const Cell& cell);
@@ -88,7 +88,7 @@ namespace ATLTileCalTBGeometry {
             // Cell vector
             // https://atlas-geometry-db.web.cern.ch/atlas-geometry-db/node_tag_browser.php
             // TileCal -> TICL -> TICL-00
-            static constexpr std::array<const Cell, fNoOfCells> fCellVector {
+            static constexpr std::array<const Cell, fNoOfCells> fCellVector {{
                 // Lower long module
                 Cell(Module::LONG_LOWER,   Row::A, -10,  1,  3, 16, 16, 16,  0,  0,  0), //   0
                 Cell(Module::LONG_LOWER,   Row::A,  -9,  1,  3, 18, 19, 18,  0,  0,  0), //   1
@@ -196,7 +196,7 @@ namespace ATLTileCalTBGeometry {
                 Cell(Module::EXTENDED,     Row::D,   6,  8, 11, 75, 75, 75, 75,  0,  0), // 101
                 Cell(Module::EXTENDED_C10, Row::C,  10,  1,  3,  6,  5,  6,  0,  0,  0), // 102
                 Cell(Module::EXTENDED_D4,  Row::D,   4,  4,  5, 17, 17,  0,  0,  0,  0), // 103
-            };
+            }};
 
         public:
             CellLUT(CellLUT const&) = delete;

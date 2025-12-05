@@ -62,6 +62,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
   
     G4String name,symbol;
     G4double a,z,density,fractionmass;
+    [[maybe_unused]]
     G4double dalu,dlead,dlar,dglue,dfe,dcu,dkapton,dGten,dmixelec;
     G4int ncomponents,natoms;
 
@@ -74,6 +75,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     density = CLHEP::universe_mean_density;  //from PhysicalConstants.h
     G4double pressure = 3.e-18*CLHEP::pascal;
     G4double temperature = 2.73*CLHEP::kelvin;
+    [[maybe_unused]]
     G4Material * Vacuum =
     	new G4Material(name="Vacuum", z=1., a=1.01*CLHEP::g/CLHEP::mole, density,
     		       kStateGas,temperature,pressure); 
@@ -85,6 +87,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     // Copper
     a = 63.55*CLHEP::g/CLHEP::mole;
     density = 8.96*CLHEP::g/CLHEP::cm3;
+    [[maybe_unused]]
     G4Material * Copper = new G4Material(name="Copper",29.,a, density);
     /*#ifdef DEBUG_GEO
     std::cout << " Copper X0 = " << Copper->GetRadlen() << std::endl;
@@ -94,6 +97,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     a = 26.98*CLHEP::g/CLHEP::mole;
     density = 2.70*CLHEP::g/CLHEP::cm3;
     dalu = density;
+    [[maybe_unused]]
     G4Material *  Aluminium = new G4Material(name="Aluminium",13.,a, density);	
     /*#ifdef DEBUG_GEO
     std::cout << " Alumin X0/lambda = " << Aluminium->GetRadlen() 
@@ -185,6 +189,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     dfe = density;
     G4Element *elFe = new G4Element(name="Iron", symbol="Fe", z=26., a);
 
+    [[maybe_unused]]
     G4Material *Iron = new G4Material(name="Iron",26.,a, density);
 
     // Copper
@@ -495,12 +500,14 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     std::cout << " Bar_Eta_cut1 " << Bar_Eta_cut1 << std::endl;
     #endif*/
 
+    [[maybe_unused]]
     G4double Bar_Z_cut,Bar_Z_cut1, Tetac, Tetac1 , Bar_Rcmx ;
     Tetac = 2.*atan(exp(-Bar_Eta_cut));
     Bar_Z_cut = Rhocen1/tan(Tetac);
     Bar_Rcmx  = Bar_Z_max*tan(Tetac);
     Tetac1 = 2.*atan(exp(-Bar_Eta_cut1));
     Bar_Z_cut1 = Rhocen1/tan(Tetac1); 
+    [[maybe_unused]]
     G4double Zp0c; 
     G4double Zp0 = 0.;
 
@@ -642,6 +649,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     #ifdef DEBUG_GEO
     std::cout << " position of TELF in ECAM " << Zpos << std::endl;
     #endif
+    [[maybe_unused]]
     G4VPhysicalVolume *Elnicsf_phys = 	new G4PVPlacement(0,
 			  G4ThreeVector(0.,0.,Zpos),
 			  Elnicsf_log, 
@@ -671,6 +679,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     G4LogicalVolume *Summing_log = new G4LogicalVolume(Summing_tub,
                                                      Summing_board,
                                                      name);
+    [[maybe_unused]]
     G4VPhysicalVolume *Summing_phys =  
            new G4PVPlacement(0,G4ThreeVector(0.,0.,0.),name,
                              Summing_log,Elnicsf_phys,false,1);
@@ -770,6 +779,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
         G4RotationMatrix *rmb = new G4RotationMatrix;
         rmb-> rotateZ(-PhiPos);
     
+	[[maybe_unused]]
         G4VPhysicalVolume *elboardf_phys = 
 	        new G4PVPlacement(rmb, 
 			      G4ThreeVector(Xpos, Ypos, Zpose),
@@ -809,6 +819,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
         Zpose = 0.;
         G4RotationMatrix *rmc = new G4RotationMatrix;
         rmc-> rotateZ(-PhiPos);
+	[[maybe_unused]]
         G4VPhysicalVolume *elcablesf_phys = 
 	        new G4PVPlacement(rmc, 
 			      G4ThreeVector(Xpos, Ypos, Zpose), 
@@ -872,6 +883,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     #ifdef DEBUG_GEO
     std::cout << "Position TELB in Ecam Zpos = " << Zpos << std::endl;
     #endif
+    [[maybe_unused]]
     G4VPhysicalVolume *Elnicsb_phys = 
         	new G4PVPlacement(0,
 			  G4ThreeVector(0.,0.,Zpos),
@@ -920,6 +932,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     #ifdef DEBUG_GEO
     std::cout << "Position GTENF in ECAM Zpos = " << Zpos << std::endl;
     #endif
+    [[maybe_unused]]
     G4VPhysicalVolume *G10f_phys = 
         	new G4PVPlacement(0,
 			  G4ThreeVector(0.,0.,Zpos),
@@ -967,6 +980,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     #ifdef DEBUG_GEO
     std::cout << "Position GTENB in ECAM Zpos = " << Zpos << std::endl;
     #endif
+    [[maybe_unused]]
     G4VPhysicalVolume *G10b_phys = 
         	new G4PVPlacement(0,
 			  G4ThreeVector(0.,0.,Zpos),
@@ -1170,6 +1184,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
     // Variables position 
     G4double Xcd,Ycd,Zcd;
     G4double Xcde,Ycde,Zcde;
+    [[maybe_unused]]
     G4double Dz,h1,bl1,tl1,alp1,Dze;
     G4double Zx0,Xb1,Xt1,Xtrans;
 
@@ -1204,10 +1219,12 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
         // This causes the barrel's color to vary as a function of
         // radius.  (This is pretty; whether or not it's useful I leave
         // for others to decide.)
+	[[maybe_unused]]
         G4float ratio = G4float(irl) / G4float(Nbrt);
 
         G4int iparit;
         iparit = (1-2*(irl%2));
+	[[maybe_unused]]
         double newalf1, newalf1e, newalpha, newalphe, cosalfa, sinalfa;
         G4Tubs *Corndw_ptub;
         G4Tubs *Corndwt_ptub;
@@ -1222,11 +1239,14 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
         G4Box *Frtbck2_box;
         G4Box *Frtbcke_box;
         G4Box *Frtbckg_box;
+	[[maybe_unused]]
         G4Box *Frtbcks_box;
+	[[maybe_unused]]
         G4LogicalVolume *Frtbck_log;
         G4LogicalVolume *Frtbck2_log;
         G4LogicalVolume *Frtbckg_log;
         G4LogicalVolume *Frtbcke_log;
+	[[maybe_unused]]
         G4LogicalVolume *Frtbcks_log;
         G4LogicalVolume *Straight_log;
         G4LogicalVolume *Straight_elog;
@@ -1332,6 +1352,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
             std::cout << "position thick abs into thin z = " 
                    << dz01-Zhalfb << std::endl;
             #endif
+	    [[maybe_unused]]
             G4VPhysicalVolume *Frtbck2_phys =
                 new G4PVPlacement(0,
                                   G4ThreeVector(0,0,dz01-Zhalfb),
@@ -1355,6 +1376,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
                 std::cout << "position steel border into G10 front part " 
                           << "y = +- " << 0.5*(+Thce-Tgfe/2.)<< std::endl;
                 #endif
+		[[maybe_unused]]
                 G4VPhysicalVolume *Frtbcks1_phys =
                     new G4PVPlacement(0,
                               G4ThreeVector(0.,0.5*(-Thce+Tgfe/2.),0.),
@@ -1363,6 +1385,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
                               Frtbckg_log,
                               false,
                               0);
+		[[maybe_unused]]
                 G4VPhysicalVolume *Frtbcks2_phys =
                     new G4PVPlacement(0,
                               G4ThreeVector(0.,0.5*(+Thce-Tgfe/2.),0.),
@@ -1450,6 +1473,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
                   << ddz01-ddz0 << std::endl;
         #endif
 
+	[[maybe_unused]]
         G4VPhysicalVolume *corndw_physt =
                 new G4PVPlacement(0,
                               G4ThreeVector(0,0,ddz01-ddz0),
@@ -1527,6 +1551,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
                   << ddz01-ddz0 << std::endl;
         #endif
   
+	[[maybe_unused]]
         G4VPhysicalVolume *cornup_physt = new G4PVPlacement(0, 
 			                                    G4ThreeVector(0,0,ddz01-ddz0), 
 			                                    Cornup_logt,
@@ -1556,6 +1581,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
         // causes us to display every 16th stack (at least, for
         // those volumes that support a partial view, and whose
         // logical volumes are defined within this loop).
+	[[maybe_unused]]
         G4bool partial = icopy % 64;
 
         // Physical Volume Index for intrinsic access (SAGGING methods)
@@ -1602,6 +1628,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
           }
           #endif
 
+	  [[maybe_unused]]
 	  G4VPhysicalVolume *Frtbck_phys = new G4PVPlacement(rmfb,
 				      G4ThreeVector(Xcd,Ycd,Zcd),
 				      Frtbck_log,
@@ -1615,6 +1642,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
 	    Xcd = radiusg*cos(Gama);
 	    Ycd = radiusg*sin(Gama);
 
+	    [[maybe_unused]]
 	    G4VPhysicalVolume *Frtbckg_phys= 
 		    new G4PVPlacement(rmfb,
 				      G4ThreeVector(Xcd,Ycd,Zcd),
@@ -1630,6 +1658,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
             Xcd = radiuse*cos(Game);
 	    Ycd = radiuse*sin(Game);
  	
+	    [[maybe_unused]]
 	    G4VPhysicalVolume *Frtbcke_phys= 
 			new G4PVPlacement(rmfe,
 					  G4ThreeVector(Xcd,Ycd,Zcd),
@@ -1678,6 +1707,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
           }
         #endif
 
+	  [[maybe_unused]]
 	  G4VPhysicalVolume *corndw_phys = 
 		    new G4PVPlacement(rmcdd,
 				      G4ThreeVector(Xcd,Ycd,Zcd), 
@@ -1689,6 +1719,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
 
 	  if(icopy != Nplus)
 	  {
+            [[maybe_unused]]
             G4VPhysicalVolume *corndw_ephys = 
 			new G4PVPlacement(rmeld,G4ThreeVector(Xcde,Ycde,Zcde), 
 					  corndweName, 
@@ -1712,6 +1743,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
           }
         #endif
   
+	  [[maybe_unused]]
 	  G4VPhysicalVolume *cornup_phys = 
 		    new G4PVPlacement(rmcdu, 
 				      G4ThreeVector(Xcd,Ycd,Zcd), 
@@ -1733,6 +1765,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
             }
         #endif
 
+	    [[maybe_unused]]
 	    G4VPhysicalVolume *cornup_ephys = 
 			new G4PVPlacement(rmelu, 
 					  G4ThreeVector(Xcde,Ycde,Zcde), 
@@ -1762,6 +1795,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
           }
         #endif
 
+	  [[maybe_unused]]
 	  G4VPhysicalVolume *corndw_phys = 
 		    new G4PVPlacement(rmcdd, 
 				      G4ThreeVector(Xcd,Ycd,Zcd), 
@@ -1787,6 +1821,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
                        << " " << Zcd << std::endl;
             }
         #endif
+	    [[maybe_unused]]
   	    G4VPhysicalVolume *corndw_ephys = 
 			new G4PVPlacement(rmeld, 
 					  G4ThreeVector(Xcde,Ycde,Zcde), 
@@ -1993,6 +2028,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
                    << Xtrans << std::endl;
         }
         #endif
+	[[maybe_unused]]
 	G4VPhysicalVolume *straight_physt = 
 	    new G4PVPlacement(0, 
 			      G4ThreeVector(Xtrans,0,0), 
@@ -2082,6 +2118,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
         }
         #endif
 	    
+	[[maybe_unused]]
 	G4VPhysicalVolume *straight_phys = 
 		new G4PVPlacement(rms, 
 				  G4ThreeVector(Xcd,Ycd,Zcd), 
@@ -2116,6 +2153,7 @@ G4LogicalVolume* LArBarrelConstruction::GetEnvelope() {
                    << " " << Zcd << std::endl;
           }
          #endif
+	  [[maybe_unused]]
 	  G4VPhysicalVolume *straight_ephys = 
 		    new G4PVPlacement(rmse, 
 				      G4ThreeVector(Xcd,Ycd,Zcd), 

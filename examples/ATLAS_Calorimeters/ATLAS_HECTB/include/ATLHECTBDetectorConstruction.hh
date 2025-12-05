@@ -24,6 +24,7 @@ class ATLHECTBDetectorConstruction : public G4VUserDetectorConstruction
 
   public:
     virtual G4VPhysicalVolume* Construct();
+    void CreateVecGeomWorld();
 
   private:
     G4VPhysicalVolume* DefineVolumes();

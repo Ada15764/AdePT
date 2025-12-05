@@ -218,7 +218,8 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
 #endif*/
     G4RotationMatrix* rotm=new G4RotationMatrix();
     rotm->rotateZ(-phi);
-    
+
+    [[maybe_unused]]
     G4VPhysicalVolume* Cent_phys = new G4PVPlacement(rotm,G4ThreeVector(0.,0.,zpos),
                                    Cent_log,"LAr::TBBarrel::Cryostat::Mother",
                                    Em_log,false,1);
@@ -259,6 +260,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
     //g4vis->SetVis(CryoW_log);
     //g4sdc->SetSD(CryoW_log);
 
+    [[maybe_unused]]
     G4VPhysicalVolume *CryoW_phys;
              CryoW_phys = new G4PVPlacement(0,
                           G4ThreeVector(Cryo_Xcent, 0., -Dz_end_tot/2.),
@@ -282,6 +284,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
                              "LAr::TBBarrel::Cryostat::VacTube");
     //g4sdc->SetSD(CryoV_log);
 
+    [[maybe_unused]]
     G4VPhysicalVolume* CryoV_phys = new G4PVPlacement(0,
                              G4ThreeVector(Cryo_Xcent,0.,-Dz_end_tot/2.),
                              "LAr::TBBarrel::Cryostat::VacTube",
@@ -305,6 +308,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
     //g4vis->SetVis(CryoC_log);
 
 
+    [[maybe_unused]]
     G4VPhysicalVolume *CryoC_phys;
              CryoC_phys = new G4PVPlacement(0,
                           G4ThreeVector(Cryo_Xcent,0., -Dz_end_tot/2.),
@@ -360,6 +364,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
     //g4sdc->SetSD(moth_log);
 
     // Physical volume
+    [[maybe_unused]]
     G4VPhysicalVolume *moth_phys = new G4PVPlacement(0,
                           G4ThreeVector(0., 0.,(LAr_z_max-Cryo_Distz)/2.),
                           "LAr::TBBarrel::Cryostat::LAr", 
@@ -406,6 +411,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
                                   "LAr::TBBarrel::Cryostat::LAr2");
       //g4sdc->SetSD(lar_log);
 
+      [[maybe_unused]]
       G4VPhysicalVolume *lar_phys =
         new G4PVPlacement(0,
                           G4ThreeVector(0., 0.,(LAr_z_max-Cryo_Distz)/2.),
@@ -495,6 +501,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
        std::cout << " Position ring in LAr mother volume at z = "
                  << Zcd << " (z atlas= " << zring[iring] << std::endl;
 #endif*/
+       [[maybe_unused]]
        G4VPhysicalVolume *ring1_phys =
          new G4PVPlacement(0,
                            G4ThreeVector(0.,0.,Zcd),
@@ -504,6 +511,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
                            false,
                            iring); 
 
+       [[maybe_unused]]
        G4VPhysicalVolume *ring2_phys =
          new G4PVPlacement(0,
                            G4ThreeVector(0.,0.,Zcd),
@@ -513,6 +521,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
                            false,
                            iring);
 
+       [[maybe_unused]]
        G4VPhysicalVolume *ring3_phys =
          new G4PVPlacement(0,
                            G4ThreeVector(0.,0.,Zcd),
@@ -553,6 +562,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
                                      "LAr::TBBarrel::Cryostat::ColdTube2");
     //g4sdc->SetSD(CryoC2_log);
 
+    [[maybe_unused]]
     G4VPhysicalVolume *CryoC2_phys =  new G4PVPlacement(0,
                           G4ThreeVector(0., 0.,-Dz_end_tot/2.),
                           "LAr::TBBarrel::Cryostat::ColdTube2",
@@ -579,6 +589,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
                                      "LAr::TBBarrel::Cryostat::VacTube2");
     //g4sdc->SetSD(CryoV2_log);
 
+    [[maybe_unused]]
     G4VPhysicalVolume *CryoV2_phys =  new G4PVPlacement(0,
                           G4ThreeVector(0., 0., -Dz_end_tot/2.),
                           "LAr::TBBarrel::Cryostat::VacTube2",
@@ -606,6 +617,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
     //g4vis->SetVis(CryoW2_log);
     //g4sdc->SetSD(CryoW2_log);
 
+    [[maybe_unused]]
     G4VPhysicalVolume *CryoW2_phys =  new G4PVPlacement(0,
                           G4ThreeVector(0., 0., -Dz_end_tot/2.),
                           "LAr::TBBarrel::Cryostat::WarmTube2",
@@ -644,6 +656,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
 /*#ifdef DEBUG_GEO
     std::cout << " position in mother at z " << zwarm << std::endl;
 #endif*/
+    [[maybe_unused]]
     G4VPhysicalVolume *CryoEndW_phys =  new G4PVPlacement(0,
                           G4ThreeVector(0., 0., zwarm),
                           "LAr::TBBarrel::Cryostat::EndWarm",
@@ -676,6 +689,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
 /*#ifdef DEBUG_GEO
     std::cout << " position in mother at z " << zvac << std::endl;
 #endif*/
+    [[maybe_unused]]
     G4VPhysicalVolume *CryoEndV_phys =  new G4PVPlacement(0,
                           G4ThreeVector(0., 0., zvac),
                           "LAr::TBBarrel::Cryostat::EndVac",
@@ -708,6 +722,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
 /*#ifdef DEBUG_GEO
     std::cout << " position in mother at z " << zcold << std::endl;
 #endif*/
+    [[maybe_unused]]
     G4VPhysicalVolume *CryoEndC_phys =  new G4PVPlacement(0,
                           G4ThreeVector(0., 0., zcold),
                           "LAr::TBBarrel::Cryostat::EndCold",
@@ -742,6 +757,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
     std::cout << " " << std::endl;
     std::cout << " Position ECAM volume in mother LAr at z " << Zcd << std::endl;
     #endif*/
+    [[maybe_unused]]
     G4VPhysicalVolume* barrelPosPhysical =
          new G4PVPlacement(0,                          // Rotation matrix
                            G4ThreeVector(0.,0.,Zcd),   // Translation
@@ -779,6 +795,7 @@ G4LogicalVolume* LArTBCryostatConstruction::GetEnvelope() {
     //std::cout << " Position PS volume in mother LAr at z " << Zcd << std::endl;
     //#endif
 
+    [[maybe_unused]]
     G4VPhysicalVolume * barrelPSPhysical =
         new G4PVPlacement(0,
                          G4ThreeVector(0.,0.,Zcd),

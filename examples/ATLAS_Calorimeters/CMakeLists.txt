@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.26)
 project(ATLAS_calorimeters)
 
 # - Subprojects
-add_subdirectory(HECTB)
-add_subdirectory(TileCalTB)
-add_subdirectory(LArBarrel)
+add_subdirectory(ATLAS_HECTB)
+add_subdirectory(ATLAS_TileCalTB)
+add_subdirectory(ATLAS_LArBarrel)
 

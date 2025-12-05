@@ -49,7 +49,7 @@ ATLTileCalTBEventAction::ATLTileCalTBEventAction(ATLTileCalTBPrimaryGenAction* p
     : G4UserEventAction(),
       fPrimaryGenAction(pga),
       fNoOfCells(ATLTileCalTBGeometry::CellLUT::GetInstance()->GetNumberOfCells()),
-      fAux{0., 0.} {
+      fAux{{0., 0.}} {
     fEdepVector = std::vector<G4double>(fNoOfCells, 0.);
     fSdepVector = std::vector<G4double>(fNoOfCells, 0.);
 }

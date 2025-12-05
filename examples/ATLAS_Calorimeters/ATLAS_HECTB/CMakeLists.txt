@@ -23,10 +23,10 @@ else()
 endif()
 
 set(sources_g4
-  ${PROJECT_SOURCE_DIR}/examples/common/src/ParticleGun.cc
-  ${PROJECT_SOURCE_DIR}/examples/common/src/ParticleGunMessenger.cc
-  ${PROJECT_SOURCE_DIR}/examples/common/src/FTFP_BERT_HepEm.cc
-  ${PROJECT_SOURCE_DIR}/examples/common/src/FTFP_BERT_AdePT.cc
+  ${PROJECT_SOURCE_DIR}/../../examples/common/src/ParticleGun.cc
+  ${PROJECT_SOURCE_DIR}/../../examples/common/src/ParticleGunMessenger.cc
+  ${PROJECT_SOURCE_DIR}/../../examples/common/src/FTFP_BERT_HepEm.cc
+  ${PROJECT_SOURCE_DIR}/../../examples/common/src/FTFP_BERT_AdePT.cc
   src/ATLHECTBActionInitialization.cc
   src/ATLHECTBDetectorConstruction.cc
   src/ATLHECTBEventAction.cc
@@ -39,20 +39,22 @@ set(sources_g4
 
 if(HepMC3_FOUND)
   set(sources_hepmc3
-    ${PROJECT_SOURCE_DIR}/examples/common/src/HepMC3G4AsciiReader.cc
-    ${PROJECT_SOURCE_DIR}/examples/common/src/HepMC3G4AsciiReaderMessenger.cc
-    ${PROJECT_SOURCE_DIR}/examples/common/src/HepMC3G4Interface.cc
+    ${PROJECT_SOURCE_DIR}/../../examples/common/src/HepMC3G4AsciiReader.cc
+    ${PROJECT_SOURCE_DIR}/../../examples/common/src/HepMC3G4AsciiReaderMessenger.cc
+    ${PROJECT_SOURCE_DIR}/../../examples/common/src/HepMC3G4Interface.cc
   )
 endif()
 
 # example1
 add_executable(ATLAS_HECTB ATLAS_HECTB.cpp ${sources_g4} ${sources_hepmc3})
 
+message(PROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR})
+
 target_include_directories(ATLAS_HECTB
   PRIVATE
-  ${PROJECT_SOURCE_DIR}/examples/ATLAS_HECTB/include
-  ${PROJECT_SOURCE_DIR}/examples/ATLAS_HECTB
-    ${PROJECT_SOURCE_DIR}/examples/common/include
+  ${PROJECT_SOURCE_DIR}/ATLAS_HECTB/include
+  ${PROJECT_SOURCE_DIR}/ATLAS_HECTB
+    ${PROJECT_SOURCE_DIR}/../../examples/common/include
     ${HEPMC3_INCLUDE_DIR}
 )
 cuda_rdc_target_link_libraries(ATLAS_HECTB
@@ -63,14 +65,13 @@ cuda_rdc_target_link_libraries(ATLAS_HECTB
 )
 
 # Install macros and geometry file
-# configure_file("macros/example1.mac.in" "${PROJECT_BINARY_DIR}/example1.mac")
-# configure_file("macros/example1_ttbar.mac.in" "${PROJECT_BINARY_DIR}/example1_ttbar.mac")
-# configure_file("macros/example1_ttbar_LHCb.mac.in" "${PROJECT_BINARY_DIR}/example1_ttbar_LHCb.mac")
-# configure_file("macros/example1_ttbar_noadept.mac.in" "${PROJECT_BINARY_DIR}/example1_ttbar_noadept.mac")
-# configure_file("macros/async_mode.mac.in" "${PROJECT_BINARY_DIR}/async_mode.mac")
+
+configure_file("macros/ATLHECTB_gui.mac.in" "${PROJECT_BINARY_DIR}/HECTB/ATLHECTB_gui.mac")
+configure_file("macros/ATLHECTB_init_vis.mac.in" "${PROJECT_BINARY_DIR}/HECTB/ATLHECTB_init_vis.mac")
+configure_file("macros/ATLHECTB_run.mac.in" "${PROJECT_BINARY_DIR}/HECTB/ATLHECTB_run.mac")
 
 # Tests
 
-add_test(NAME example1-g4vg
-  COMMAND $<TARGET_FILE:example1> -m ${PROJECT_BINARY_DIR}/example1.mac
+add_test(NAME ATLAS_HECTB-g4vg
+  COMMAND $<TARGET_FILE:ATLAS_HECTB> -m ${PROJECT_BINARY_DIR}/ATLHECTB_run.mac
 )

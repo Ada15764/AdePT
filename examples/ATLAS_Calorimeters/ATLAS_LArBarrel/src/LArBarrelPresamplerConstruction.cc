@@ -307,7 +307,10 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
     //
     // electrodes + prepreg plates ----> PS modules
 
+    [[maybe_unused]]
     G4VPhysicalVolume* prep1_phys[8];
+
+    [[maybe_unused]]
     G4VPhysicalVolume* prep2_phys[8];
 
     G4double prep1_pos[8];
@@ -347,6 +350,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
     for( j=0; j<mod[0][2]; j++ )
 
         {
+            [[maybe_unused]]
             G4VPhysicalVolume* cath_phys = new
 	    G4PVPlacement(elec_rot,
 		      G4ThreeVector(0.*CLHEP::mm,YStartC[0]+j*mod[0][4]*cmm,elec_trans),
@@ -358,6 +362,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
     for( j=0; j<mod[0][1]; j++ )
 
         {
+	[[maybe_unused]]
         G4VPhysicalVolume* ano_phys = new
 	    G4PVPlacement(elec_rot,
 		      G4ThreeVector(0.*CLHEP::mm,YStartA[0]+j*mod[0][4]*cmm,elec_trans),
@@ -388,6 +393,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
         for( j=0; j<mod[i][2]; j++ )
 
 	    {
+            [[maybe_unused]]
 	    G4VPhysicalVolume* cath_phys = new
 	    G4PVPlacement(elec_rot,
 			  G4ThreeVector(0.*CLHEP::mm,YStartC[i]+j*mod[i][4]*cmm,elec_trans),
@@ -399,6 +405,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
         for( j=0; j<mod[i][1]; j++ )
 
 	    {
+            [[maybe_unused]]
 	    G4VPhysicalVolume* ano_phys = new
 	    G4PVPlacement(elec_rot,
 			  G4ThreeVector(0.*CLHEP::mm,YStartA[i]+j*mod[i][4]*cmm,elec_trans),
@@ -425,6 +432,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
     }      
     for( i=2; i<8; i++) modZ[i]= modZ[0];
 
+    [[maybe_unused]]
     G4VPhysicalVolume* PsModulePhys[8];
 
     for( i=0; i<8; i++)
@@ -440,6 +448,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
     G4double glY = -sector_length/2+prot_y+epsil;
     G4double glZ = -sector_height/2+(shell_th/2)*cmm+epsil;
 
+    [[maybe_unused]]
     G4VPhysicalVolume* Prot_Shell_phys = new G4PVPlacement(0,
 							 G4ThreeVector(glX,glY,glZ),
 							 LV_Prot_Shell,
@@ -448,6 +457,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
 
     G4double mbZ = modZ[0]+mod_heig[0]/2+(mb_th/2)*cmm+epsil;
 
+    [[maybe_unused]]
     G4VPhysicalVolume* mb_phys = new G4PVPlacement(0,
 						 G4ThreeVector(0.*CLHEP::mm,0.*CLHEP::mm,mbZ),
 						 LV_MB,
@@ -455,6 +465,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
 						 PsSectorLog,false,0);
 
     G4double protZ= mbZ+(mb_th/2+heightOut+prot_th/2)*cmm+2*epsil;
+    [[maybe_unused]]
     G4VPhysicalVolume* prot_plate_phys = new G4PVPlacement(0,
 							 G4ThreeVector(glX,glY,protZ),			   
 							 LV_prot_plate,
@@ -465,6 +476,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
     G4RotationMatrix* matrix = new G4RotationMatrix;
     matrix->rotateX (90.*CLHEP::deg);
 
+    [[maybe_unused]]
     G4VPhysicalVolume* connectics_phys = new G4PVPlacement(matrix,
 							 G4ThreeVector(0.*CLHEP::mm,0.*CLHEP::mm,connZ),
 							 LV_connectics,
@@ -474,12 +486,14 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
     G4double railX = (bigLength/2+1-rail_pos-rail_width/2)*cmm+epsil;
     G4double railZ = modZ[0]+mod_heig[0]/2+(rail_th/2)*cmm+epsil;
 
+    [[maybe_unused]]
     G4VPhysicalVolume* rail1_phys = new G4PVPlacement(0,
 						    G4ThreeVector(railX,glY,railZ),
 						    LV_rail,
 						    LV_rail->GetName(),
 						    PsSectorLog,false,0);
 
+    [[maybe_unused]]
     G4VPhysicalVolume* rail2_phys = new G4PVPlacement(0,
 						    G4ThreeVector(-railX,glY,railZ),
 						    LV_rail,
@@ -518,6 +532,7 @@ G4LogicalVolume* LArBarrelPresamplerConstruction::GetEnvelope(){
       sector_rot->rotateZ (-90.*CLHEP::deg);
       sector_rot->rotateX (-90.*CLHEP::deg);
 		
+      [[maybe_unused]]
       G4VPhysicalVolume* PSSECTOR_phys = new G4PVPlacement(sector_rot,
 							   G4ThreeVector(xpres,ypres,zpres),
 							   PsSectorLog,

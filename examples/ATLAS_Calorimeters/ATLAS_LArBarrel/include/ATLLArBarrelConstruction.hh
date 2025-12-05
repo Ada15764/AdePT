@@ -19,6 +19,7 @@ class ATLLArBarrelConstruction : public G4VUserDetectorConstruction {
     public:
         ATLLArBarrelConstruction();
         virtual ~ATLLArBarrelConstruction();
+	void CreateVecGeomWorld();
 
         virtual G4VPhysicalVolume* Construct();
         virtual void ConstructSDandField();

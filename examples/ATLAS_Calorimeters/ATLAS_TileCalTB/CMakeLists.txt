@@ -23,25 +23,29 @@ else()
 endif()
 
 set(sources_g4
-  ${PROJECT_SOURCE_DIR}/examples/common/src/ParticleGun.cc
-  ${PROJECT_SOURCE_DIR}/examples/common/src/ParticleGunMessenger.cc
-  ${PROJECT_SOURCE_DIR}/examples/common/src/FTFP_BERT_HepEm.cc
-  ${PROJECT_SOURCE_DIR}/examples/common/src/FTFP_BERT_AdePT.cc
-  src/ATLHECTBActionInitialization.cc
-  src/ATLHECTBDetectorConstruction.cc
-  src/ATLHECTBEventAction.cc
-  src/ATLHECTBSteppingAction.cc
-  src/ATLHECTBSignalCalculator.cc
-  src/ATLHECTBPrimaryGeneratorAction.cc
-  src/ATLHECTBRunAction.cc
+  ${PROJECT_SOURCE_DIR}/../../examples/common/src/ParticleGun.cc
+  ${PROJECT_SOURCE_DIR}/../../examples/common/src/ParticleGunMessenger.cc
+  ${PROJECT_SOURCE_DIR}/../../examples/common/src/FTFP_BERT_HepEm.cc
+  ${PROJECT_SOURCE_DIR}/../../examples/common/src/FTFP_BERT_AdePT.cc
+  src/ATLTileCalTBActInitialization.cc
+  src/ATLTileCalTBHit.cc 
+  src/ATLTileCalTBStepAction.cc
+  src/ATLTileCalTBDetConstruction.cc
+  src/ATLTileCalTBPrimaryGenAction.cc
+  src/FLUKAHadronInelasticPhysics.cc
+  src/ATLTileCalTBEventAction.cc
+  src/ATLTileCalTBRunAction.cc
+  src/G4_CernFLUKAHadronInelastic_FTFP_BERT.cc
+  src/ATLTileCalTBGeometry.cc
+  src/ATLTileCalTBSensDet.cc
   src/SpectrumAnalyzer.cc
 )
 
 if(HepMC3_FOUND)
   set(sources_hepmc3
-    ${PROJECT_SOURCE_DIR}/examples/common/src/HepMC3G4AsciiReader.cc
-    ${PROJECT_SOURCE_DIR}/examples/common/src/HepMC3G4AsciiReaderMessenger.cc
-    ${PROJECT_SOURCE_DIR}/examples/common/src/HepMC3G4Interface.cc
+    ${PROJECT_SOURCE_DIR}/../../examples/common/src/HepMC3G4AsciiReader.cc
+    ${PROJECT_SOURCE_DIR}/../../examples/common/src/HepMC3G4AsciiReaderMessenger.cc
+    ${PROJECT_SOURCE_DIR}/../../examples/common/src/HepMC3G4Interface.cc
   )
 endif()
 
@@ -50,9 +54,9 @@ add_executable(ATLAS_TileCalTB ATLAS_TileCalTB.cpp ${sources_g4} ${sources_hepmc
 
 target_include_directories(ATLAS_TileCalTB
   PRIVATE
-  ${PROJECT_SOURCE_DIR}/examples/ATLAS_TileCalTB/include
-  ${PROJECT_SOURCE_DIR}/examples/ATLAS_TileCalTB
-    ${PROJECT_SOURCE_DIR}/examples/common/include
+  ${PROJECT_SOURCE_DIR}/ATLAS_TileCalTB/include
+  ${PROJECT_SOURCE_DIR}/ATLAS_TileCalTB
+    ${PROJECT_SOURCE_DIR}/../../examples/common/include
     ${HEPMC3_INCLUDE_DIR}
 )
 cuda_rdc_target_link_libraries(ATLAS_TileCalTB
@@ -63,14 +67,17 @@ cuda_rdc_target_link_libraries(ATLAS_TileCalTB
 )
 
 # Install macros and geometry file
-# configure_file("macros/example1.mac.in" "${PROJECT_BINARY_DIR}/example1.mac")
-# configure_file("macros/example1_ttbar.mac.in" "${PROJECT_BINARY_DIR}/example1_ttbar.mac")
-# configure_file("macros/example1_ttbar_LHCb.mac.in" "${PROJECT_BINARY_DIR}/example1_ttbar_LHCb.mac")
-# configure_file("macros/example1_ttbar_noadept.mac.in" "${PROJECT_BINARY_DIR}/example1_ttbar_noadept.mac")
-# configure_file("macros/async_mode.mac.in" "${PROJECT_BINARY_DIR}/async_mode.mac")
+SET(GDML ${PROJECT_BINARY_DIR}/cms2018_sd.gdml)
+configure_file("macros/gui.mac.in" "${PROJECT_BINARY_DIR}/Tilecal/gui.mac")
+configure_file("macros/icons.mac.in" "${PROJECT_BINARY_DIR}/Tilecal/icons.mac")
+configure_file("macros/init_vis.mac.in" "${PROJECT_BINARY_DIR}/Tilecal/init_vis.mac")
+configure_file("macros/single.mac.in" "${PROJECT_BINARY_DIR}/Tilecal/single.mac")
+configure_file("macros/TBrun_all.mac.in" "${PROJECT_BINARY_DIR}/Tilecal/TBrun_all.mac")
+configure_file("macros/TBrun.mac.in" "${PROJECT_BINARY_DIR}/Tilecal/TBrun.mac")
+configure_file("macros/vis.mac.in" "${PROJECT_BINARY_DIR}/Tilecal/vis.mac")
 
 # Tests
 
-add_test(NAME example1-g4vg
-  COMMAND $<TARGET_FILE:example1> -m ${PROJECT_BINARY_DIR}/example1.mac
+add_test(NAME TileCalTB-g4vg
+  COMMAND $<TARGET_FILE:ATLAS_TileCalTB> -m ${PROJECT_BINARY_DIR}/example1.mac
 )
